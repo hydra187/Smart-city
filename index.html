@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart City Dashboard</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Background elements for Glassmorphism effect -->
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+
+      <div class="dashboard-container">
+        <header class="dashboard-header">
+          <h1><i class="ph ph-buildings"></i> Smart City Command Center</h1>
+          <p>Real-time telemetry and citizen insights</p>
+        </header>
+
+        <div class="dashboard-grid">
+          <!-- Card 1: Weather -->
+          <div class="glass-card" id="card-weather">
+            <div class="card-header">
+              <h3><i class="ph ph-cloud-sun"></i> Local Weather</h3>
+              <button class="refresh-btn" onclick="window.app.fetchWeather()"><i class="ph ph-arrows-clockwise"></i></button>
+            </div>
+            <div class="card-content" id="content-weather">
+              <div class="loader">Loading...</div>
+            </div>
+          </div>
+
+          <!-- Card 2: Currency Rates -->
+          <div class="glass-card" id="card-currency">
+            <div class="card-header">
+              <h3><i class="ph ph-currency-circle-dollar"></i> Exchange Rates</h3>
+              <button class="refresh-btn" onclick="window.app.fetchCurrency()"><i class="ph ph-arrows-clockwise"></i></button>
+            </div>
+            <div class="card-content" id="content-currency">
+              <div class="loader">Loading...</div>
+            </div>
+          </div>
+
+          <!-- Card 3: Citizen Profile -->
+          <div class="glass-card" id="card-citizen">
+            <div class="card-header">
+              <h3><i class="ph ph-user-circle"></i> Featured Citizen</h3>
+              <button class="refresh-btn" onclick="window.app.fetchCitizen()"><i class="ph ph-arrows-clockwise"></i></button>
+            </div>
+            <div class="card-content" id="content-citizen">
+              <div class="loader">Loading...</div>
+            </div>
+          </div>
+
+          <!-- Card 4: City Fact -->
+          <div class="glass-card" id="card-fact">
+            <div class="card-header">
+              <h3><i class="ph ph-lightbulb"></i> City Fact of the Day</h3>
+              <button class="refresh-btn" onclick="window.app.fetchFact()"><i class="ph ph-arrows-clockwise"></i></button>
+            </div>
+            <div class="card-content" id="content-fact">
+              <div class="loader">Loading...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chatbot Web Component / UI -->
+      <div class="chatbot-wrapper">
+        <button class="chat-toggle" onclick="window.app.toggleChat()">
+          <i class="ph ph-chat-teardrop-dots"></i>
+        </button>
+
+        <div class="chat-window hidden" id="chat-window">
+          <div class="chat-header">
+            <h3><i class="ph ph-robot"></i> Smart Assistant</h3>
+            <button class="close-btn" onclick="window.app.toggleChat()"><i class="ph ph-x"></i></button>
+          </div>
+          <div class="chat-messages" id="chat-messages">
+            <div class="message ai-message">
+              Hello! I'm the smart city assistant. I can answer questions about the latest weather, currency rates, featured citizen, or city facts visible on the dashboard. What would you like to know?
+            </div>
+          </div>
+          <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type your question..." onkeypress="window.app.handleChatInput(event)">
+            <button class="send-btn" onclick="window.app.sendMessage()">
+              <i class="ph ph-paper-plane-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
